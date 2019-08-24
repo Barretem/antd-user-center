@@ -45,7 +45,14 @@ class Projects extends Component<ProjectsProps> {
       <List<ListItemDataType>
         rowKey="id"
         loading={loading}
-        grid={{ gutter: 24, xl: 4, lg: 3, md: 3, sm: 2, xs: 1 }}
+        grid={{
+          gutter: 24,
+          xl: 4,
+          lg: 3,
+          md: 3,
+          sm: 2,
+          xs: 1,
+        }}
         dataSource={list}
         renderItem={item => (
           <List.Item>

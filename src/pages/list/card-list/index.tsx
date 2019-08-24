@@ -35,10 +35,7 @@ interface CardListState {
     loading: loading.models.list,
   }),
 )
-class CardList extends Component<
-  CardListProps,
-  CardListState
-> {
+class CardList extends Component<CardListProps, CardListState> {
   componentDidMount() {
     const { dispatch } = this.props;
     dispatch({
@@ -93,7 +90,13 @@ class CardList extends Component<
           <List<Partial<CardListItemDataType>>
             rowKey="id"
             loading={loading}
-            grid={{ gutter: 24, lg: 3, md: 2, sm: 1, xs: 1 }}
+            grid={{
+              gutter: 24,
+              lg: 3,
+              md: 2,
+              sm: 1,
+              xs: 1,
+            }}
             dataSource={[nullData, ...list]}
             renderItem={item => {
               if (item && item.id) {

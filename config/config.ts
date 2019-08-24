@@ -100,6 +100,16 @@ export default {
               component: './user/login',
             },
             {
+              name: 'register-result',
+              path: '/user/register-result',
+              component: './user/register-result',
+            },
+            {
+              name: 'register',
+              path: '/user/register',
+              component: './user/register',
+            },
+            {
               component: '404',
             },
           ],
@@ -114,7 +124,23 @@ export default {
               path: '/dashboard',
               name: 'dashboard',
               icon: 'dashboard',
-              routes: [],
+              routes: [
+                {
+                  name: 'analysis',
+                  path: '/dashboard/analysis',
+                  component: './dashboard/analysis',
+                },
+                {
+                  name: 'monitor',
+                  path: '/dashboard/monitor',
+                  component: './dashboard/monitor',
+                },
+                {
+                  name: 'workplace',
+                  path: '/dashboard/workplace',
+                  component: './dashboard/workplace',
+                },
+              ],
             },
             {
               path: '/form',
@@ -125,6 +151,16 @@ export default {
                   name: 'basic-form',
                   path: '/form/basic-form',
                   component: './form/basic-form',
+                },
+                {
+                  name: 'step-form',
+                  path: '/form/step-form',
+                  component: './form/step-form',
+                },
+                {
+                  name: 'advanced-form',
+                  path: '/form/advanced-form',
+                  component: './form/advanced-form',
                 },
               ],
             },
@@ -151,6 +187,11 @@ export default {
                       name: 'projects',
                       path: '/list/search/projects',
                       component: './list/search/projects',
+                    },
+                    {
+                      name: 'applications',
+                      path: '/list/search/applications',
+                      component: './list/search/applications',
                     },
                   ],
                 },
@@ -180,6 +221,11 @@ export default {
                   name: 'basic',
                   path: '/profile/basic',
                   component: './profile/basic',
+                },
+                {
+                  name: 'advanced',
+                  path: '/profile/advanced',
+                  component: './profile/advanced',
                 },
               ],
             },
@@ -228,6 +274,11 @@ export default {
               path: '/account',
               routes: [
                 {
+                  name: 'center',
+                  path: '/account/center',
+                  component: './account/center',
+                },
+                {
                   name: 'settings',
                   path: '/account/settings',
                   component: './account/settings',
@@ -238,7 +289,23 @@ export default {
               name: 'editor',
               icon: 'highlight',
               path: '/editor',
-              routes: [],
+              routes: [
+                {
+                  name: 'flow',
+                  path: '/editor/flow',
+                  component: './editor/flow',
+                },
+                {
+                  name: 'mind',
+                  path: '/editor/mind',
+                  component: './editor/mind',
+                },
+                {
+                  name: 'koni',
+                  path: '/editor/koni',
+                  component: './editor/koni',
+                },
+              ],
             },
             {
               path: '/',
@@ -273,7 +340,7 @@ export default {
         resourcePath: string;
       },
       _: string,
-      localName: string
+      localName: string,
     ) => {
       if (
         context.resourcePath.includes('node_modules') ||

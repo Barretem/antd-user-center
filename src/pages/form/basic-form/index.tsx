@@ -10,9 +10,7 @@ import {
   Select,
   Tooltip,
 } from 'antd';
-import { FormattedMessage, formatMessage } from 'umi-plugin-react/locale';
 import React, { Component } from 'react';
-
 import { Dispatch } from 'redux';
 import { FormComponentProps } from 'antd/es/form';
 import { PageHeaderWrapper } from '@ant-design/pro-layout';
@@ -23,7 +21,6 @@ const FormItem = Form.Item;
 const { Option } = Select;
 const { RangePicker } = DatePicker;
 const { TextArea } = Input;
-
 interface BasicFormProps extends FormComponentProps {
   submitting: boolean;
   dispatch: Dispatch<any>;
@@ -48,88 +45,108 @@ class BasicForm extends Component<BasicFormProps> {
     const {
       form: { getFieldDecorator, getFieldValue },
     } = this.props;
-
     const formItemLayout = {
       labelCol: {
-        xs: { span: 24 },
-        sm: { span: 7 },
+        xs: {
+          span: 24,
+        },
+        sm: {
+          span: 7,
+        },
       },
       wrapperCol: {
-        xs: { span: 24 },
-        sm: { span: 12 },
-        md: { span: 10 },
+        xs: {
+          span: 24,
+        },
+        sm: {
+          span: 12,
+        },
+        md: {
+          span: 10,
+        },
       },
     };
-
     const submitFormLayout = {
       wrapperCol: {
-        xs: { span: 24, offset: 0 },
-        sm: { span: 10, offset: 7 },
+        xs: {
+          span: 24,
+          offset: 0,
+        },
+        sm: {
+          span: 10,
+          offset: 7,
+        },
       },
     };
     return (
-      <PageHeaderWrapper content={<FormattedMessage id="form-basic-form.basic.description" />}>
+      <PageHeaderWrapper content="表单页用于向用户收集或验证信息，基础表单常见于数据项较少的表单场景。">
         <Card bordered={false}>
-          <Form onSubmit={this.handleSubmit} hideRequiredMark style={{ marginTop: 8 }}>
-            <FormItem {...formItemLayout} label={<FormattedMessage id="form-basic-form.title.label" />}>
+          <Form
+            onSubmit={this.handleSubmit}
+            hideRequiredMark
+            style={{
+              marginTop: 8,
+            }}
+          >
+            <FormItem {...formItemLayout} label="标题">
               {getFieldDecorator('title', {
                 rules: [
                   {
                     required: true,
-                    message: formatMessage({ id: 'form-basic-form.title.required' }),
+                    message: '请输入标题',
                   },
                 ],
-              })(<Input placeholder={formatMessage({ id: 'form-basic-form.title.placeholder' })} />)}
+              })(<Input placeholder="给目标起个名字" />)}
             </FormItem>
-            <FormItem {...formItemLayout} label={<FormattedMessage id="form-basic-form.date.label" />}>
+            <FormItem {...formItemLayout} label="起止日期">
               {getFieldDecorator('date', {
                 rules: [
                   {
                     required: true,
-                    message: formatMessage({ id: 'form-basic-form.date.required' }),
+                    message: '请选择起止日期',
                   },
                 ],
               })(
                 <RangePicker
-                  style={{ width: '100%' }}
-                  placeholder={[
-                    formatMessage({ id: 'form-basic-form.placeholder.start' }),
-                    formatMessage({ id: 'form-basic-form.placeholder.end' }),
-                  ]}
+                  style={{
+                    width: '100%',
+                  }}
+                  placeholder={['开始日期', '结束日期']}
                 />,
               )}
             </FormItem>
-            <FormItem {...formItemLayout} label={<FormattedMessage id="form-basic-form.goal.label" />}>
+            <FormItem {...formItemLayout} label="目标描述">
               {getFieldDecorator('goal', {
                 rules: [
                   {
                     required: true,
-                    message: formatMessage({ id: 'form-basic-form.goal.required' }),
+                    message: '请输入目标描述',
                   },
                 ],
               })(
                 <TextArea
-                  style={{ minHeight: 32 }}
-                  placeholder={formatMessage({ id: 'form-basic-form.goal.placeholder' })}
+                  style={{
+                    minHeight: 32,
+                  }}
+                  placeholder="请输入你的阶段性工作目标"
                   rows={4}
                 />,
               )}
             </FormItem>
-            <FormItem
-              {...formItemLayout}
-              label={<FormattedMessage id="form-basic-form.standard.label" />}
-            >
+            <FormItem {...formItemLayout} label="衡量标准">
               {getFieldDecorator('standard', {
                 rules: [
                   {
                     required: true,
-                    message: formatMessage({ id: 'form-basic-form.standard.required' }),
+                    message: '请输入衡量标准',
                   },
                 ],
               })(
                 <TextArea
-                  style={{ minHeight: 32 }}
-                  placeholder={formatMessage({ id: 'form-basic-form.standard.placeholder' })}
+                  style={{
+                    minHeight: 32,
+                  }}
+                  placeholder="请输入衡量标准"
                   rows={4}
                 />,
               )}
@@ -138,106 +155,98 @@ class BasicForm extends Component<BasicFormProps> {
               {...formItemLayout}
               label={
                 <span>
-                  <FormattedMessage id="form-basic-form.client.label" />
+                  客户
                   <em className={styles.optional}>
-                    <FormattedMessage id="form-basic-form.form.optional" />
-                    <Tooltip title={<FormattedMessage id="form-basic-form.label.tooltip" />}>
-                      <Icon type="info-circle-o" style={{ marginRight: 4 }} />
+                    （选填）
+                    <Tooltip title="目标的服务对象">
+                      <Icon
+                        type="info-circle-o"
+                        style={{
+                          marginRight: 4,
+                        }}
+                      />
                     </Tooltip>
                   </em>
                 </span>
               }
             >
               {getFieldDecorator('client')(
-                <Input placeholder={formatMessage({ id: 'form-basic-form.client.placeholder' })} />,
+                <Input placeholder="请描述你服务的客户，内部客户直接 @姓名／工号" />,
               )}
             </FormItem>
             <FormItem
               {...formItemLayout}
               label={
                 <span>
-                  <FormattedMessage id="form-basic-form.invites.label" />
-                  <em className={styles.optional}>
-                    <FormattedMessage id="form-basic-form.form.optional" />
-                  </em>
+                  邀评人
+                  <em className={styles.optional}>（选填）</em>
                 </span>
               }
             >
               {getFieldDecorator('invites')(
-                <Input placeholder={formatMessage({ id: 'form-basic-form.invites.placeholder' })} />,
+                <Input placeholder="请直接 @姓名／工号，最多可邀请 5 人" />,
               )}
             </FormItem>
             <FormItem
               {...formItemLayout}
               label={
                 <span>
-                  <FormattedMessage id="form-basic-form.weight.label" />
-                  <em className={styles.optional}>
-                    <FormattedMessage id="form-basic-form.form.optional" />
-                  </em>
+                  权重
+                  <em className={styles.optional}>（选填）</em>
                 </span>
               }
             >
-              {getFieldDecorator('weight')(
-                <InputNumber
-                  placeholder={formatMessage({ id: 'form-basic-form.weight.placeholder' })}
-                  min={0}
-                  max={100}
-                />,
-              )}
+              {getFieldDecorator('weight')(<InputNumber placeholder="请输入" min={0} max={100} />)}
               <span className="ant-form-text">%</span>
             </FormItem>
-            <FormItem
-              {...formItemLayout}
-              label={<FormattedMessage id="form-basic-form.public.label" />}
-              help={<FormattedMessage id="form-basic-form.label.help" />}
-            >
+            <FormItem {...formItemLayout} label="目标公开" help="客户、邀评人默认被分享">
               <div>
                 {getFieldDecorator('public', {
                   initialValue: '1',
                 })(
                   <Radio.Group>
-                    <Radio value="1">
-                      <FormattedMessage id="form-basic-form.radio.public" />
-                    </Radio>
-                    <Radio value="2">
-                      <FormattedMessage id="form-basic-form.radio.partially-public" />
-                    </Radio>
-                    <Radio value="3">
-                      <FormattedMessage id="form-basic-form.radio.private" />
-                    </Radio>
+                    <Radio value="1">公开</Radio>
+                    <Radio value="2">部分公开</Radio>
+                    <Radio value="3">不公开</Radio>
                   </Radio.Group>,
                 )}
-                <FormItem style={{ marginBottom: 0 }}>
+                <FormItem
+                  style={{
+                    marginBottom: 0,
+                  }}
+                >
                   {getFieldDecorator('publicUsers')(
                     <Select
                       mode="multiple"
-                      placeholder={formatMessage({ id: 'form-basic-form.publicUsers.placeholder' })}
+                      placeholder="公开给"
                       style={{
                         margin: '8px 0',
                         display: getFieldValue('public') === '2' ? 'block' : 'none',
                       }}
                     >
-                      <Option value="1">
-                        <FormattedMessage id="form-basic-form.option.A" />
-                      </Option>
-                      <Option value="2">
-                        <FormattedMessage id="form-basic-form.option.B" />
-                      </Option>
-                      <Option value="3">
-                        <FormattedMessage id="form-basic-form.option.C" />
-                      </Option>
+                      <Option value="1">同事甲</Option>
+                      <Option value="2">同事乙</Option>
+                      <Option value="3">同事丙</Option>
                     </Select>,
                   )}
                 </FormItem>
               </div>
             </FormItem>
-            <FormItem {...submitFormLayout} style={{ marginTop: 32 }}>
+            <FormItem
+              {...submitFormLayout}
+              style={{
+                marginTop: 32,
+              }}
+            >
               <Button type="primary" htmlType="submit" loading={submitting}>
-                <FormattedMessage id="form-basic-form.form.submit" />
+                提交
               </Button>
-              <Button style={{ marginLeft: 8 }}>
-                <FormattedMessage id="form-basic-form.form.save" />
+              <Button
+                style={{
+                  marginLeft: 8,
+                }}
+              >
+                保存
               </Button>
             </FormItem>
           </Form>
